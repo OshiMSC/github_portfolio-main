@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oshadee Kaushalya — Software Engineering Researcher & IT Educator</title>
+<title>Oshadee Kaushalya — Software Engineer & Educator</title>
 <meta name="description" content="Oshadee Kaushalya — Software Engineer and Educator based in Auckland, New Zealand.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,8 +217,33 @@
   .edu-item .inst{ color: var(--text-muted); font-size:13.5px; margin-top:3px; }
   .edu-item .note{ font-size:12.5px; color: var(--purple); margin-top:3px; }
   .edu-item .yr{ font-family: var(--heading); font-size:12.5px; color: var(--text-faint); font-weight:600; white-space:nowrap; }
-  .skill-tags{ display:flex; flex-wrap:wrap; gap:9px; }
-  .skill-tags span{ font-size:12.5px; color: var(--text-muted); background: var(--card); border:1px solid var(--line); padding:8px 14px; border-radius:20px; }
+  .skill-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap:12px; }
+  .skill-item{
+    background: var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 15px;
+    transition: transform .3s cubic-bezier(.22,.61,.36,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .skill-item:hover{ transform: translateY(-3px); border-color: var(--purple); box-shadow: 0 10px 26px rgba(0,0,0,0.3); }
+  .skill-item-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+  .skill-name{ font-size:13px; font-weight:600; }
+  .skill-level-tag{
+    font-family: var(--heading); font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+    padding:3px 8px; border-radius:6px; white-space:nowrap;
+  }
+  .skill-item[data-level="beginner"] .skill-level-tag{ color: var(--text-faint); background: rgba(255,255,255,0.06); }
+  .skill-item[data-level="intermediate"] .skill-level-tag{ color: var(--blue); background: rgba(79,124,255,0.14); }
+  .skill-item[data-level="fluent"] .skill-level-tag{ color:#fff; background: var(--grad); }
+  .skill-bar-track{ height:6px; border-radius:999px; background: rgba(255,255,255,0.07); overflow:hidden; }
+  .skill-bar-fill{
+    height:100%; border-radius:999px; transform: scaleX(0); transform-origin:left;
+    transition: transform 1.1s cubic-bezier(.22,.61,.36,1);
+  }
+  .skill-item.in .skill-bar-fill{ transform: scaleX(1); }
+  .skill-item[data-level="beginner"] .skill-bar-fill{ width:34%; background: var(--text-muted); }
+  .skill-item[data-level="intermediate"] .skill-bar-fill{ width:64%; background: var(--blue); }
+  .skill-item[data-level="fluent"] .skill-bar-fill{ width:93%; background: var(--grad); }
+  @media (prefers-reduced-motion: reduce){
+    .skill-bar-fill{ transform: scaleX(1); transition:none; }
+  }
   .skill-group{ margin-bottom:22px; }
   .skill-group:last-child{ margin-bottom:0; }
   .skill-group h5{ font-family: var(--heading); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color: var(--text-faint); margin-bottom:10px; }
@@ -341,8 +366,12 @@
   .highlight-row span{ transition: transform .2s ease, border-color .2s ease, color .2s ease; }
   .highlight-row span:hover{ transform: translateY(-2px); border-color: var(--purple); color: var(--text); }
 
-  .skill-tags span{ transition: transform .2s ease, border-color .2s ease, color .2s ease; }
-  .skill-tags span:hover{ transform: translateY(-2px); border-color: var(--purple); color: var(--text); }
+  .skill-legend{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:22px; }
+  .skill-legend .item{ display:flex; align-items:center; gap:7px; font-size:11.5px; color: var(--text-muted); }
+  .skill-legend .dot{ width:9px; height:9px; border-radius:50%; }
+  .skill-legend .dot.beginner{ background: var(--text-muted); }
+  .skill-legend .dot.intermediate{ background: var(--blue); }
+  .skill-legend .dot.fluent{ background: var(--grad); }
 
   @media (max-width: 980px){
     .sidebar{ display:none; }
@@ -692,41 +721,93 @@
       </div>
     </section>
 
-    <section class="section" id="skills">
+      <section class="section" id="skills">
       <div class="eyebrow">Skills</div>
       <div class="sec-head"><h2 class="sec-title">Toolkit</h2></div>
 
+      <div class="skill-legend">
+        <span class="item"><span class="dot beginner"></span>Beginner</span>
+        <span class="item"><span class="dot intermediate"></span>Intermediate</span>
+        <span class="item"><span class="dot fluent"></span>Fluent</span>
+      </div>
+
       <div class="skill-group">
         <h5>Programming Languages</h5>
-        <div class="skill-tags"><span>Python</span><span>Java</span><span>JavaScript</span><span>SQL</span><span>C</span><span>PHP</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">Python</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Java</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">JavaScript</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">SQL</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="beginner"><div class="skill-item-top"><span class="skill-name">C</span><span class="skill-level-tag">Beginner</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="beginner"><div class="skill-item-top"><span class="skill-name">PHP</span><span class="skill-level-tag">Beginner</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>Frontend Development</h5>
-        <div class="skill-tags"><span>React.js</span><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span><span>Bootstrap</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">React.js</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">HTML5</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">CSS3</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="beginner"><div class="skill-item-top"><span class="skill-name">Tailwind CSS</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">Bootstrap</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>Mobile Development</h5>
-        <div class="skill-tags"><span>Flutter</span><span>Android Studio</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">Flutter</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Android Studio</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>Backend Development</h5>
-        <div class="skill-tags"><span>Flask</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">Flask</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>Artificial Intelligence</h5>
-        <div class="skill-tags"><span>TensorFlow</span><span>TensorFlow Lite</span><span>Machine Learning</span><span>CNN Models</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">TensorFlow</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">TensorFlow Lite</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Machine Learning</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">CNN Models</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>UI / UX Design</h5>
-        <div class="skill-tags"><span>Figma</span><span>Canva</span><span>User Research</span><span>Wireframing</span><span>Prototyping</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Figma</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">Canva</span><span class="skill-level-tag">Beginner</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="beginner"><div class="skill-item-top"><span class="skill-name">User Research</span><span class="skill-level-tag">Beginner</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Wireframing</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Prototyping</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>Database</h5>
-        <div class="skill-tags"><span>MySQL</span><span>SQL Server</span><span>SQLite</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">MySQL</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="beginner"><div class="skill-item-top"><span class="skill-name">SQL Server</span><span class="skill-level-tag">Beginner</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">SQLite</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
+
       <div class="skill-group">
         <h5>Tools</h5>
-        <div class="skill-tags"><span>Git</span><span>GitHub</span><span>VS Code</span><span>Google Colab</span><span>Docker</span></div>
+        <div class="skill-grid">
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">Git</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">GitHub</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="fluent"><div class="skill-item-top"><span class="skill-name">VS Code</span><span class="skill-level-tag">Fluent</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="intermediate"><div class="skill-item-top"><span class="skill-name">Google Colab</span><span class="skill-level-tag">Intermediate</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+          <div class="skill-item" data-level="beginner"><div class="skill-item-top"><span class="skill-name">Docker</span><span class="skill-level-tag">Beginner</span></div><div class="skill-bar-track"><div class="skill-bar-fill"></div></div></div>
+        </div>
       </div>
     </section>
 
@@ -911,6 +992,26 @@
       });
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
+  }
+
+  // ---------- skill bar fill on scroll ----------
+  const skillItems = document.querySelectorAll('.skill-item');
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    let skillIndex = 0;
+    const skillIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const fill = el.querySelector('.skill-bar-fill');
+          if (fill) fill.style.transitionDelay = (skillIndex++ % 8) * 60 + 'ms';
+          el.classList.add('in');
+          skillIO.unobserve(el);
+        }
+      });
+    }, { threshold: 0.35, rootMargin: '0px 0px -20px 0px' });
+    skillItems.forEach(el => skillIO.observe(el));
+  } else {
+    skillItems.forEach(el => el.classList.add('in'));
   }
 </script>
 </body>
