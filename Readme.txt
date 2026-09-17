@@ -1,6 +1,1 @@
-Thanks for downloading this template!
-
-Template Name: SnapFolio
-Template URL: https://bootstrapmade.com/snapfolio-bootstrap-portfolio-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+I am a Graduate Software Developer and Software Engineering Researcher with First Class Honours in Information and Communication Technology and a Master of Software Engineering. My experience spans software development, AI-powered research, and over four years of higher education teaching and mentoring. I enjoy building practical digital solutions that combine technology, creativity, and real-world impact.
